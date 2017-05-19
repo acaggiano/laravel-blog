@@ -11,8 +11,14 @@ class CommentsController extends Controller
 {
     public function store(Post $post) {
     	$this->validate(request(), ['body'  => 'required|min:2']);
-    	auth()->user()->addComment(request('body'), $post);
+    	if(auth()->user()){
+    		auth()->user()->addComment(request('body'), $post);
 
-    	return back();
+    		return back();
+		}
+		else {
+			return back()->withErrors(['Only users can comment, Please log in or sign up.']);
+		}
+    	
     }
 }

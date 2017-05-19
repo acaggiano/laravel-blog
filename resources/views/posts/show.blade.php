@@ -13,6 +13,7 @@
 			@foreach($post->comments as $comment)
 
 			<li class="list-group-item">
+				{{ $comment->user->name }} said
 				{{ $comment->body }}
 				&nbsp;<strong>{{ $comment->created_at->diffForHumans() }}</strong>
 			</li>
