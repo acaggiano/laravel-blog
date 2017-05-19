@@ -13,7 +13,7 @@ class CommentsController extends Controller
     	$this->validate(request(), ['body'  => 'required|min:2']);
     	if(auth()->user()){
     		auth()->user()->addComment(request('body'), $post);
-
+    		session()->flash('message', 'Comment Posted!');
     		return back();
 		}
 		else {
