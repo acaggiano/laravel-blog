@@ -14,10 +14,6 @@ class Post extends Model
     	return $this->belongsTo(User::class);
     }
 
-	public function addComment($body){
-		$this->comments()->create(compact('body'));
-	}
-
 	public function scopeFilter($query, $filters){
 		if($month = $filters['month']){
 			$query->whereMonth('created_at', Carbon::parse($month)->month);
